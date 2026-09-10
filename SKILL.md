@@ -123,6 +123,18 @@ Organize by reader need, not by the order in which research, conversation, or im
 
 Do not move essential foreground information into a reference. Reference only a source that exists and will be accessible to the intended reader. If an external source is necessary but unavailable, state the dependency or uncertainty instead of fabricating or silently assuming its contents.
 
+## Keep vocabulary within its abstraction level
+
+Choose the vocabulary for each section from the question it answers. Conceptual discussion uses domain concepts, responsibilities, behavior, and constraints; implementation discussion uses exact identifiers, file paths, APIs, and configuration keys when the reader needs them to act or verify a claim. A technical audience can need either level, so do not choose vocabulary from audience expertise alone.
+
+Keep conceptual explanations in conceptual terms. Defining an identifier or putting it in parentheses does not make it useful there. Name the responsibility or behavior directly, preserving the distinctions and constraints that matter; do not replace precise meaning with vague labels such as "the system."
+
+Connect the two vocabularies at an explicit boundary when the reader needs to navigate between them: an implementation section, a short mapping table, or a focused transition. Establish the correspondence there, then use the vocabulary of the current section consistently instead of repeatedly attaching code names to concepts. Use only mappings supported by the source material.
+
+For example, a design rationale may say, "Retrying a request must not create a second payment." An implementation section can then identify the field that detects duplicate requests and the handler that checks it. The rationale does not need those identifiers merely because they are known. Conversely, an execution plan or API reference must retain exact names where locating or invoking the implementation is the reader's task; a local code comment may also need a symbol to explain its behavior precisely.
+
+Apply this distinction within the requested editing scope. Add a separate section or mapping only when the reader needs the crossing; a short conceptual passage does not require an implementation appendix.
+
 ## Separate contexts and prevent instruction leakage
 
 Maintain a hard boundary between these two kinds of information:
@@ -146,6 +158,7 @@ For full shaping, review the finished artifact as a reader rather than line-edit
 - Are assumptions, constraints, rationale, risks, and validation visible where the purpose requires them?
 - Are facts, assumptions, and unresolved questions distinguishable where confusing them would affect action or judgment?
 - Are volatile details distinguished from durable truths when lifetime is long?
+- Does each section use vocabulary appropriate to its abstraction level, with necessary concept-to-implementation mappings confined to clear transitions or reference material?
 - Can every required reference be located by the intended reader?
 - Has all instruction leakage been removed?
 

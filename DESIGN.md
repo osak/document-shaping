@@ -97,6 +97,18 @@ Before prose is drafted, information is sorted into five functional classes:
 
 The hierarchy prevents a common failure mode: reproducing all known information in the order it was learned. Documents should expose the structure the reader needs, not the chronology of research, conversation, or implementation.
 
+## Conceptual vocabulary and implementation vocabulary
+
+A document can select the right information and still force readers to switch abstraction levels within every sentence. Variable names, file paths, and internal component names are useful for locating code, but they interrupt a discussion about responsibilities, behavior, or design constraints when the reader has no need to navigate to that code. Defining each name does not remove that interruption.
+
+This is separate from the authoring/artifact boundary: an implementation identifier can be a legitimate artifact fact and still belong outside a conceptual explanation. It is also separate from audience expertise. An experienced developer reviewing an architectural idea may need conceptual vocabulary in the rationale and exact identifiers in the implementation plan.
+
+The runtime rule therefore chooses vocabulary by the job of each section. Conceptual passages retain precise domain meaning and constraints. Implementation passages retain the names needed for execution, lookup, and verification. Where readers must cross between them, an explicit transition or mapping establishes the correspondence without repeatedly inserting code names into the conceptual narrative. Mappings must come from the available source material, not invented implementation details.
+
+For example, the constraint that retrying a request must not create a second payment stands independently of the field and handler used to enforce it. A reviewer can assess the constraint before inspecting those implementation choices. An execution plan still needs the actual field and handler names when directing a change, and a local code comment can name the symbol whose behavior it explains.
+
+The aim is to preserve both kinds of precision. It is not a ban on identifiers, a requirement to simplify technical language, or a mandate to add an implementation appendix to every document. Local edits keep their scope, and durable records preserve implementation names only where the reader's task warrants their maintenance cost.
+
 ## Structural editing
 
 Line editing cannot reliably repair misplaced information. A dedicated structural editing pass is therefore part of full shaping. It checks whether the reader can find the document's primary problem, conclusion, decision, or action; whether each section has a distinct job; whether required context precedes dependency; and whether evidence, constraints, risks, rationale, and validation have the prominence appropriate to the purpose.
