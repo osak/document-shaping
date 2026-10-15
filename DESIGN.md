@@ -97,6 +97,14 @@ Before prose is drafted, information is sorted into five functional classes:
 
 The hierarchy prevents a common failure mode: reproducing all known information in the order it was learned. Documents should expose the structure the reader needs, not the chronology of research, conversation, or implementation.
 
+### Decisions and supporting rationale
+
+For Review, Decision, and Maintenance purposes, decision paragraphs or lists precede separate paragraphs of supporting rationale. Decision blocks retain the constraints needed to understand what was decided. Rationale stays immediately nearby, and the structural pass checks both decision-only scanning and rationale clauses mixed into decision blocks.
+
+Interleaving decisions and reasons makes readers parse every sentence to reconstruct the outcome. Separate blocks let a reviewer or maintainer find the decisions quickly and then inspect their justification. This is an arrangement rule for decisions and their rationale, not a redefinition of Foreground and Support: those classes still depend on the reader's task, and maintenance documents still preserve durable rationale.
+
+Execution documents may keep short cautions alongside steps where they guide safe action. Local shaping applies the separation inside the requested area without restructuring the whole artifact.
+
 ## Conceptual vocabulary and implementation vocabulary
 
 A document can select the right information and still force readers to switch abstraction levels within every sentence. Variable names, file paths, and internal component names are useful for locating code, but they interrupt a discussion about responsibilities, behavior, or design constraints when the reader has no need to navigate to that code. Defining each name does not remove that interruption.
@@ -108,6 +116,14 @@ The runtime rule therefore chooses vocabulary by the job of each section. Concep
 For example, the constraint that retrying a request must not create a second payment stands independently of the field and handler used to enforce it. A reviewer can assess the constraint before inspecting those implementation choices. An execution plan still needs the actual field and handler names when directing a change, and a local code comment can name the symbol whose behavior it explains.
 
 The aim is to preserve both kinds of precision. It is not a ban on identifiers, a requirement to simplify technical language, or a mandate to add an implementation appendix to every document. Local edits keep their scope, and durable records preserve implementation names only where the reader's task warrants their maintenance cost.
+
+### Destination and identifier formatting
+
+An explicit output destination supplies a supplementary formatting constraint. The four reader-model axes continue to determine information needs; the destination determines how that information should be presented under its rendering behavior. No destination-specific rule is enforced when the destination is unspecified.
+
+In destinations such as Notion that strongly decorate inline code, enumerations of two or more identifiers use a list with one item per line. Exact names remain where the reader needs them, and the structural pass checks their readability in the destination.
+
+Repeated inline-code decoration can make identifiers crowded in prose or parentheses. A vertical list improves scanning even when it lengthens the document. This formatting follows the abstraction-level choice rather than introducing identifiers into conceptual passages, and it respects the scope of local edits.
 
 ## Structural editing
 
