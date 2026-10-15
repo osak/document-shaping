@@ -107,6 +107,10 @@ The axes are independent requirements, not scores and not a verbosity formula:
 
 Honor explicit user requirements before inferred ones. If several audiences or purposes exist, identify the primary one from the requested outcome. Optimize the main flow for it, then serve compatible secondary needs through supporting sections or references. Do not average conflicting needs into a document that serves none of them.
 
+### Destination
+
+When the output destination is explicit, account for its rendering behavior when choosing formatting. Destination is a supplementary formatting consideration; it does not change the four reader-model dimensions or the information hierarchy. If no destination is specified, do not impose destination-specific formatting rules.
+
 ## Shape information before prose
 
 For full shaping, classify the available information before structuring the artifact. For local shaping, classify only material in the requested area and any adjacent material required for coherence.
@@ -121,6 +125,10 @@ Classify each item by its value to this reader and purpose:
 
 Organize by reader need, not by the order in which research, conversation, or implementation occurred. Keep decision-relevant items visible in review and decision documents; keep actions, constraints, edge cases, and validation visible in execution documents; keep rationale, invariants, boundaries, and durable terminology visible in maintenance documents.
 
+For Review, Decision, and Maintenance purposes, keep decisions in Foreground paragraphs or lists and their supporting rationale in separate Support paragraphs immediately afterward. Do not mix a decision and its rationale in the same paragraph or list item. A reader scanning only the decision paragraphs or lists must be able to tell what was decided, including relevant constraints, while skipping the rationale. Preserve the reader-dependent classification above; this separation does not make all Foreground information a decision or all Support information rationale.
+
+For Execution purposes, steps may include short cautions where the reader needs them to act safely. In local shaping, apply decision/rationale separation only within the requested area; do not reorganize the whole document.
+
 Do not move essential foreground information into a reference. Reference only a source that exists and will be accessible to the intended reader. If an external source is necessary but unavailable, state the dependency or uncertainty instead of fabricating or silently assuming its contents.
 
 ## Keep vocabulary within its abstraction level
@@ -134,6 +142,8 @@ Connect the two vocabularies at an explicit boundary when the reader needs to na
 For example, a design rationale may say, "Retrying a request must not create a second payment." An implementation section can then identify the field that detects duplicate requests and the handler that checks it. The rationale does not need those identifiers merely because they are known. Conversely, an execution plan or API reference must retain exact names where locating or invoking the implementation is the reader's task; a local code comment may also need a symbol to explain its behavior precisely.
 
 Apply this distinction within the requested editing scope. Add a separate section or mapping only when the reader needs the crossing; a short conceptual passage does not require an implementation appendix.
+
+If the explicit destination renders inline code with strong visual decoration, as Notion does, enumerate two or more identifiers in a list with one item per line. Do not run them together in prose or parentheses; a longer vertical layout is acceptable. Retain the exact identifiers where the reader needs them, and apply this formatting only within the requested editing scope. Do not enforce this rule when the destination is unspecified.
 
 ## Separate contexts and prevent instruction leakage
 
@@ -153,12 +163,15 @@ Before finalizing, scan for prompt-like imperatives, references to the writer or
 For full shaping, review the finished artifact as a reader rather than line-editing it in isolation.
 
 - Can the reader find the main problem, conclusion, decision, or action quickly?
+- For Review, Decision, or Maintenance purposes, can a reader scanning only the decision paragraphs or lists tell what was decided?
+- For those purposes, do decision paragraphs or list items contain rationale clauses such as "because" or "since" that should move to a separate supporting paragraph?
 - Does each section have a job, and is its information at the right level of the hierarchy?
 - Does it reconstruct necessary context without narrating the author's process?
 - Are assumptions, constraints, rationale, risks, and validation visible where the purpose requires them?
 - Are facts, assumptions, and unresolved questions distinguishable where confusing them would affect action or judgment?
 - Are volatile details distinguished from durable truths when lifetime is long?
 - Does each section use vocabulary appropriate to its abstraction level, with necessary concept-to-implementation mappings confined to clear transitions or reference material?
+- When the destination is explicit, does its rendering make identifiers arranged side by side hard to read? If it strongly decorates inline code, are enumerations of two or more identifiers in lists with one item per line?
 - Can every required reference be located by the intended reader?
 - Has all instruction leakage been removed?
 
