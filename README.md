@@ -32,6 +32,11 @@ Place the `document-shaping` folder in your agent's skill directory. If your age
 
 A persona describes who'll use the document and what they'll use it for. “It's for the team reviewing the design” is enough to get started. If you have a particular reader in mind, add what they already know or what they'll need to do with the document. With a short request, the agent can infer the rest from the kind of document you ask for and the material you give it.
 
+- “The readers are engineers from another team joining the design review. They know how the API works and are seeing this proposal for the first time.”
+- “The reader is a developer who just joined the team. They know TypeScript and are adding their first feature to this repository.”
+- “The reader is an engineer taking over service operations in six months. They'll use the guide to see what to check first during an incident.”
+- “The reader is the product lead deciding whether to launch the feature on schedule. They need to weigh the impact on users and the cost of a delay.”
+
 ### Design document for reviewers
 
 **Short request**
