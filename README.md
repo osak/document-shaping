@@ -20,86 +20,52 @@ A bounded edit receives local shaping that preserves the surrounding structure. 
 
 ## Use with an agent
 
-Clone the repository into your agent's skill directory, keeping the folder name `document-shaping`. For Claude Code:
+Clone the repository into your workspace.
 
 ```sh
-git clone https://github.com/osak/document-shaping.git ~/.claude/skills/document-shaping
+git clone https://github.com/osak/document-shaping.git
 ```
 
-Then type `/document-shaping` followed by what you want written and who will read it. If your agent doesn't support skills, start with something like "Read document-shaping/SKILL.md and …" instead.
+Ask your agent to read the skill and apply it to a specific writing task. The examples below assume you are working from the parent directory of the clone.
 
-### Tell it who the reader is
+To make the skill discoverable automatically, place the repository in a skill directory supported by your agent, keeping the folder name `document-shaping`. If the skill is already available, name it directly in your request.
 
-A persona is a picture of who will use the finished document and how. Start with "The reader is …" and mention their role, what they already know, and what they'll do after reading. If when they read it changes what the document should keep, say so. For a partial revision, name the section too.
+### Specify the intended reader
 
-"The reader is a backend engineer" is enough to set the technical level. "The readers are backend engineers who know our queue but missed the proposal discussion, and they'll decide whether to approve the retry change at the next design review" also tells the agent which background to fill in and what to put up front.
+Use the persona to describe who will use the finished document. Start with “The reader is …” and give their role, what they already know, and what they need to do after reading. Mention when they will use the document if that affects what it should preserve. Include the source material and name the section if the request is a bounded revision.
 
-### Example requests
+“The reader is a backend engineer” gives the agent a starting point. “The readers are backend engineers who know our queue but missed the proposal discussion. They need to decide whether to approve the retry change at the next design review” also tells the agent which background to reconstruct and what evidence belongs up front.
 
-Both short and detailed requests work. With a short one, the agent fills in the reader from the document type and the request; the more you spell out, the closer the structure gets to what you had in mind.
-
-#### Design document for reviewers
-
-Short:
+### Design document for reviewers
 
 ```text
-/document-shaping Write a design doc from the attached notes. It's for the people at the design review.
+Read document-shaping/SKILL.md and turn the attached queue retry notes into a design document for the next review.
+The readers are backend engineers who know the existing queue but missed the proposal discussion. They need to decide whether to approve the change.
+Summarize the current failure mode, then compare the proposal and alternatives on duplicate processing, recovery, and rollout risk. Flag open questions that affect approval.
 ```
 
-Detailed:
+### Documentation revision for future maintainers
 
 ```text
-/document-shaping Turn the attached queue retry notes into a design doc for the next review.
-The readers are backend engineers who know the existing queue but missed the proposal discussion. They'll decide whether to approve the change.
-Start with a quick summary of what's wrong with retries today, then compare the proposal and alternatives on duplicate processing, recovery, and rollout risk. Call out any open questions that could affect approval.
+Read document-shaping/SKILL.md and revise only the retry policy section of the queue operations guide using the attached decision notes.
+The reader is an on-call engineer taking over the queue months from now. They know how queues work and will read the guide without the original decision notes.
+Explain why the retry limit exists, what happens when it is reached, and what to verify before changing it.
 ```
 
-#### Documentation revision for future maintainers
-
-Short:
+### Implementation plan for an AI agent
 
 ```text
-/document-shaping Update the "Retry policy" section of the ops guide using the decision notes. It's for whoever runs the queue later.
+Read document-shaping/SKILL.md and turn the attached queue retry specification into an implementation plan.
+The reader is a coding agent starting in a fresh checkout. It can inspect the repository and run tests. It has no access to this chat and needs to implement and verify the change.
+List the affected files and symbols, required behavior, failure cases, and verification steps. Mark decisions the specification leaves open.
 ```
 
-Detailed:
+### Rollout guide for customer support
 
 ```text
-/document-shaping Using the attached decision notes, revise just the "Retry policy" section of the queue operations guide.
-The reader is an on-call engineer taking over the queue a few months from now. They know how queues work but won't have the original decision notes.
-I'd like it to cover why the retry limit exists, what happens when it's hit, and what to check before changing it.
-```
-
-#### Implementation plan for an AI agent
-
-Short:
-
-```text
-/document-shaping Turn the attached spec into an implementation plan for a coding agent.
-```
-
-Detailed:
-
-```text
-/document-shaping Turn the attached queue retry spec into an implementation plan.
-The reader is a coding agent starting from a fresh checkout. It can read the code and run tests, but it can't see this chat, so the plan alone should be enough to implement and verify the change.
-Include the files and symbols to touch, expected behavior, failure cases, and how to verify. Clearly mark anything the spec leaves open.
-```
-
-#### Rollout guide for customer support
-
-Short:
-
-```text
-/document-shaping Write a guide for the support team from the attached release notes.
-```
-
-Detailed:
-
-```text
-/document-shaping Write a guide for customer support from the attached release notes.
-The readers are support specialists who know the product and the ticket workflow. They'll use it to answer customer questions during the first week after the rollout.
-Cover what customers will notice, what support can check, when to escalate, and what to include when they do.
+Read document-shaping/SKILL.md and use the attached rollout notes to write a guide for the customer support team.
+The readers are support specialists who know the product and the ticket workflow. They need to answer customer questions during the first week of the rollout.
+Describe what customers will see, what support can check, when to escalate, and what to include in an escalation.
 ```
 
 ## Repository contents
