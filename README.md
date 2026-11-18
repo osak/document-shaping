@@ -1,5 +1,7 @@
 # Document Shaping
 
+[日本語](README.ja.md)
+
 Document Shaping is an AI agent skill for organizing formal documents and explicitly requested technical writing around the reader's needs. It helps decide what to emphasize, explain, summarize, reference, or leave out, and in what order to present it.
 
 ## When to use it
@@ -24,15 +26,78 @@ Clone the repository into your workspace.
 git clone https://github.com/osak/document-shaping.git
 ```
 
-Ask your agent to read the skill and apply it to a specific writing task. For example, from the parent directory of the clone:
+Place the `document-shaping` folder in your agent's skill directory. If your agent supports slash commands for skills, start your request with `/document-shaping`. You can also ask it to read `document-shaping/SKILL.md` and then give it the same writing request.
 
-> Read `document-shaping/SKILL.md` and use it to write a design document from the attached notes. The audience is engineers reviewing the proposal without access to our discussion. Explain the decision, alternatives, and operational consequences.
+### Specify the intended reader
 
-For a bounded revision:
+A persona describes who'll use the document and what they'll use it for. “It's for the team reviewing the design” is enough to get started. If you have a particular reader in mind, add what they already know or what they'll need to do with the document. With a short request, the agent can infer the rest from the kind of document you ask for and the material you give it.
 
-> Read `document-shaping/SKILL.md` and use it to revise only the retry-policy section for future maintainers. Preserve the rest of the document's structure.
+- “The readers are engineers from another team joining the design review. They know how the API works and are seeing this proposal for the first time.”
+- “The reader is a developer who just joined the team. They know TypeScript and are adding their first feature to this repository.”
+- “The reader is an engineer taking over service operations in six months. They'll use the guide to see what to check first during an incident.”
+- “The reader is the product lead deciding whether to launch the feature on schedule. They need to weigh the impact on users and the cost of a delay.”
 
-To make the skill discoverable automatically, place the repository in a skill directory supported by your agent, keeping the folder name `document-shaping`. Skill discovery and installation locations depend on the host; the manual instructions above do not require automatic discovery.
+### Design document for reviewers
+
+**Short request**
+
+```text
+/document-shaping Turn these notes into a design doc for the review team.
+```
+
+**More detail**
+
+```text
+/document-shaping Turn the attached retry notes into a design doc for the next review.
+The engineers know our queue and will be reading about this proposal for the first time.
+Put the current problem and the risks up front so they can decide whether to go ahead.
+```
+
+### Documentation revision for future maintainers
+
+**Short request**
+
+```text
+/document-shaping Use these notes to update the retry policy in the ops guide for the next maintainer.
+```
+
+**More detail**
+
+```text
+/document-shaping Use the attached decision notes to update just the “Retry policy” section of the ops guide.
+It's for someone taking over the queue in a few months who'll be relying on the guide.
+Make it easy to see why there's a retry limit and what to check before changing it.
+```
+
+### Implementation plan for an AI agent
+
+**Short request**
+
+```text
+/document-shaping Turn the attached spec into a plan for a coding agent.
+```
+
+**More detail**
+
+```text
+/document-shaping Turn the attached retry spec into an implementation plan for another coding agent.
+It'll have the repo and the plan to work from. Make it clear where to make the change and how to test it.
+```
+
+### Rollout guide for customer support
+
+**Short request**
+
+```text
+/document-shaping Use these release notes to write a guide for the support team.
+```
+
+**More detail**
+
+```text
+/document-shaping Turn the attached release notes into a guide support can use right after the rollout.
+The team already knows how to handle tickets. Focus on what customers will notice and what support should check when questions come in.
+```
 
 ## Repository contents
 
