@@ -26,46 +26,72 @@ Clone the repository into your workspace.
 git clone https://github.com/osak/document-shaping.git
 ```
 
-Ask your agent to read the skill and apply it to a specific writing task. The examples below assume you are working from the parent directory of the clone.
-
-To make the skill discoverable automatically, place the repository in a skill directory supported by your agent, keeping the folder name `document-shaping`. If the skill is already available, name it directly in your request.
+Place the `document-shaping` folder in your agent's skill directory. If your agent supports slash commands for skills, start your request with `/document-shaping`. You can also ask it to read `document-shaping/SKILL.md` and then give it the same writing request.
 
 ### Specify the intended reader
 
-Use the persona to describe who will use the finished document. Start with “The reader is …” and give their role, what they already know, and what they need to do after reading. Mention when they will use the document if that affects what it should preserve. Include the source material and name the section if the request is a bounded revision.
-
-“The reader is a backend engineer” gives the agent a starting point. “The readers are backend engineers who know our queue but missed the proposal discussion. They need to decide whether to approve the retry change at the next design review” also tells the agent which background to reconstruct and what evidence belongs up front.
+A persona describes who'll use the document and what they'll use it for. “It's for the team reviewing the design” is enough to get started. If you have a particular reader in mind, add what they already know or what they'll need to do with the document. With a short request, the agent can infer the rest from the kind of document you ask for and the material you give it.
 
 ### Design document for reviewers
 
+**Short request**
+
 ```text
-Read document-shaping/SKILL.md and turn the attached queue retry notes into a design document for the next review.
-The readers are backend engineers who know the existing queue but missed the proposal discussion. They need to decide whether to approve the change.
-Summarize the current failure mode, then compare the proposal and alternatives on duplicate processing, recovery, and rollout risk. Flag open questions that affect approval.
+/document-shaping Turn these notes into a design doc for the review team.
+```
+
+**More detail**
+
+```text
+/document-shaping Turn the attached retry notes into a design doc for the next review.
+The engineers know our queue and will be reading about this proposal for the first time.
+Put the current problem and the risks up front so they can decide whether to go ahead.
 ```
 
 ### Documentation revision for future maintainers
 
+**Short request**
+
 ```text
-Read document-shaping/SKILL.md and revise only the retry policy section of the queue operations guide using the attached decision notes.
-The reader is an on-call engineer taking over the queue months from now. They know how queues work and will read the guide without the original decision notes.
-Explain why the retry limit exists, what happens when it is reached, and what to verify before changing it.
+/document-shaping Use these notes to update the retry policy in the ops guide for the next maintainer.
+```
+
+**More detail**
+
+```text
+/document-shaping Use the attached decision notes to update just the “Retry policy” section of the ops guide.
+It's for someone taking over the queue in a few months who'll be relying on the guide.
+Make it easy to see why there's a retry limit and what to check before changing it.
 ```
 
 ### Implementation plan for an AI agent
 
+**Short request**
+
 ```text
-Read document-shaping/SKILL.md and turn the attached queue retry specification into an implementation plan.
-The reader is a coding agent starting in a fresh checkout. It can inspect the repository and run tests. It has no access to this chat and needs to implement and verify the change.
-List the affected files and symbols, required behavior, failure cases, and verification steps. Mark decisions the specification leaves open.
+/document-shaping Turn the attached spec into a plan for a coding agent.
+```
+
+**More detail**
+
+```text
+/document-shaping Turn the attached retry spec into an implementation plan for another coding agent.
+It'll have the repo and the plan to work from. Make it clear where to make the change and how to test it.
 ```
 
 ### Rollout guide for customer support
 
+**Short request**
+
 ```text
-Read document-shaping/SKILL.md and use the attached rollout notes to write a guide for the customer support team.
-The readers are support specialists who know the product and the ticket workflow. They need to answer customer questions during the first week of the rollout.
-Describe what customers will see, what support can check, when to escalate, and what to include in an escalation.
+/document-shaping Use these release notes to write a guide for the support team.
+```
+
+**More detail**
+
+```text
+/document-shaping Turn the attached release notes into a guide support can use right after the rollout.
+The team already knows how to handle tickets. Focus on what customers will notice and what support should check when questions come in.
 ```
 
 ## Repository contents
